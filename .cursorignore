@@ -1,0 +1,28 @@
+# Build artifacts
+x64/
+Debug/
+Release/
+obj/
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.pch
+
+# Visual Studio metadata
+.vs/
+*.vcxproj.user
+*.suo
+
+# Third-party binaries (don't index precompiled deps)
+ext/**/*.lib
+ext/**/*.dll
+unicorn.lib
+
+# Docs and generated
+docs/audit-*.md
+*.log
+
+# Git
+.git/

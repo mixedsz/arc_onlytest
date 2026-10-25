@@ -1,0 +1,7 @@
+﻿  AlertManager.cpp
+  OffsetHealth.cpp
+  main.cpp
+  GObjectsRecovery.cpp
+  Reflection.cpp
+C:\Users\marks\Downloads\arc_arc_only\x64\Release\arc-raiders-anc.exe : warning LNK4088: image being generated due to /FORCE option; image may not run
+  arc-um.vcxproj -> C:\Users\marks\Downloads\arc_arc_only\x64\Release\arc-raiders-anc.exe

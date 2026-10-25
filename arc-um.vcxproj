@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release DLL|x64">
+      <Configuration>Release DLL</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{0ad0fed5-c39d-4137-9504-d058ce9a5bd5}</ProjectGuid>
+    <RootNamespace>Framework</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>arc-raiders-anc</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release DLL|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release DLL|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4005;4244;4267;4305;4309;4018;4100;4101;4189;4312;4390;4505;4566;4838;4996;5204;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExternalIncludeDirectories>$(ProjectDir)ext;$(ProjectDir)ext\imgui;$(ProjectDir)ext\freetype;$(ProjectDir)ext\freetype\include;%(ExternalIncludeDirectories)</ExternalIncludeDirectories>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>IMGUI_DEFINE_MATH_OPERATORS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)ext;$(ProjectDir)ext\imgui;$(ProjectDir)ext\freetype;$(ProjectDir)ext\freetype\include;$(ProjectDir);C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/FS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)/Lib/Win32;$(ProjectDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;d3d11.lib;d3dcompiler.lib;dxgi.lib;unicorn.lib;dwmapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/FORCE:MULTIPLE /IGNORE:4006,4098,4088 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4005;4244;4267;4305;4309;4018;4100;4101;4189;4312;4390;4505;4566;4838;4996;5204;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExternalIncludeDirectories>$(ProjectDir)ext;$(ProjectDir)ext\imgui;$(ProjectDir)ext\freetype;$(ProjectDir)ext\freetype\include;%(ExternalIncludeDirectories)</ExternalIncludeDirectories>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>IMGUI_DEFINE_MATH_OPERATORS;WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)ext;$(ProjectDir)ext\imgui;$(ProjectDir)ext\freetype;$(ProjectDir)ext\freetype\include;$(ProjectDir);C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/FS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)/Lib/Win32;$(ProjectDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;d3d11.lib;d3dcompiler.lib;dxgi.lib;unicorn.lib;dwmapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/FORCE:MULTIPLE /IGNORE:4006,4098,4088 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4005;4244;4267;4305;4309;4018;4100;4101;4189;4312;4390;4505;4566;4838;4996;5204;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExternalIncludeDirectories>$(ProjectDir)ext;$(ProjectDir)ext\imgui;$(ProjectDir)ext\freetype;$(ProjectDir)ext\freetype\include;%(ExternalIncludeDirectories)</ExternalIncludeDirectories>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>IMGUI_DEFINE_MATH_OPERATORS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)ext;$(ProjectDir)ext\imgui;$(ProjectDir)ext\freetype;$(ProjectDir)ext\freetype\include;$(ProjectDir);C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/FS %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)/Lib/x64;$(ProjectDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;d3d11.lib;d3dcompiler.lib;dxgi.lib;unicorn.lib;dwmapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/FORCE:MULTIPLE /IGNORE:4006,4098,4088 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4005;4244;4267;4305;4309;4018;4100;4101;4189;4312;4390;4505;4566;4838;4996;5204;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExternalIncludeDirectories>$(ProjectDir)ext;$(ProjectDir)ext\imgui;$(ProjectDir)ext\freetype;$(ProjectDir)ext\freetype\include;%(ExternalIncludeDirectories)</ExternalIncludeDirectories>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>IMGUI_DEFINE_MATH_OPERATORS;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)ext;$(ProjectDir)ext\imgui;$(ProjectDir)ext\freetype;$(ProjectDir)ext\freetype\include;$(ProjectDir);C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/guard:cf- /FS %(AdditionalOptions)</AdditionalOptions>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)/Lib/x64;$(ProjectDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;d3d11.lib;d3dcompiler.lib;dxgi.lib;unicorn.lib;dwmapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/FORCE:MULTIPLE /IGNORE:4006,4098,4088 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release DLL|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4005;4244;4267;4305;4309;4018;4100;4101;4189;4312;4390;4505;4566;4838;4996;5204;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExternalIncludeDirectories>$(ProjectDir)ext;$(ProjectDir)ext\imgui;$(ProjectDir)ext\freetype;$(ProjectDir)ext\freetype\include;%(ExternalIncludeDirectories)</ExternalIncludeDirectories>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>IMGUI_DEFINE_MATH_OPERATORS;BUILD_DLL;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)ext;$(ProjectDir)ext\imgui;$(ProjectDir)ext\freetype;$(ProjectDir)ext\freetype\include;$(ProjectDir);C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/guard:cf- /FS %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)/Lib/x64;$(ProjectDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;d3d11.lib;d3dcompiler.lib;dxgi.lib;unicorn.lib;dwmapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/FORCE:MULTIPLE /IGNORE:4006,4098,4088 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\debug\Logger.cpp" />
+    <ClCompile Include="src\memory\driver_memory.cpp" />
+    <ClCompile Include="src\game\OffsetHealth.cpp" />
+    <ClCompile Include="src\game\HudRender.cpp" />
+    <ClCompile Include="src\game\AlertManager.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\app\arc_ui_render.cpp" />
+    <ClCompile Include="src\menu\framework\color.cpp" />
+    <ClCompile Include="src\menu\framework\container\container.cpp" />
+    <ClCompile Include="src\menu\framework\input\gamepad.cpp" />
+    <ClCompile Include="src\sdk\GObjectsRecovery.cpp" />
+    <ClCompile Include="src\sdk\Reflection.cpp" />
+    <ClCompile Include="src\menu\framework\input\input.cpp" />
+    <ClCompile Include="src\menu\framework\object\object.cpp" />
+    <ClCompile Include="src\menu\framework\render\render.cpp" />
+    <ClCompile Include="src\menu\framework\style\style.cpp" />
+    <ClCompile Include="src\menu\framework\tab\subtab.cpp" />
+    <ClCompile Include="src\menu\framework\tab\tab.cpp" />
+    <ClCompile Include="src\menu\framework\ui\ui.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\button\button.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\checkbox\checkbox.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\color_picker\color_picker.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\confirmation_button\confirmation_button.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\dropdown\dropdown.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\keybind\keybind.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\label\label.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\listbox\listbox.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\multi_dropdown\multi_dropdown.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\popup\popup.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\seperator\seperator.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\radio\radio.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\grid\grid.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\slider\slider.cpp" />
+    <ClCompile Include="src\menu\framework\widgets\text_input\text_input.cpp" />
+    <ClCompile Include="src\menu\framework\window\window.cpp" />
+    <ClCompile Include="src\menu\menu.cpp" />
+    <ClCompile Include="src\menu\menu_combat_tab.cpp" />
+    <ClCompile Include="src\menu\menu_visuals_tab.cpp" />
+    <ClCompile Include="src\menu\menu_world_tab.cpp" />
+    <ClCompile Include="src\menu\menu_radar_tab.cpp" />
+    <ClCompile Include="src\menu\menu_misc_tab.cpp" />
+    <ClCompile Include="src\menu\menu_hud_tab.cpp" />
+    <ClCompile Include="src\menu\menu_warnings_tab.cpp" />
+    <ClCompile Include="ext\freetype\imgui_freetype.cpp" />
+    <ClCompile Include="ext\imgui\gui\gui.cpp" />
+    <ClCompile Include="ext\imgui\gui\lucide_font_data.cpp" />
+    <ClCompile Include="ext\imgui\imgui.cpp" />
+    <ClCompile Include="ext\imgui\imgui_draw.cpp" />
+    <ClCompile Include="ext\imgui\imgui_impl_dx9.cpp" />
+    <ClCompile Include="ext\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="ext\imgui\imgui_tables.cpp" />
+    <ClCompile Include="ext\imgui\imgui_widgets.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\app\AppWindow.hpp" />
+    <ClInclude Include="src\game\Cache.hpp" />
+    <ClInclude Include="src\game\CacheTypes.hpp" />
+    <ClInclude Include="src\game\StringHash.hpp" />
+    <ClInclude Include="src\game\EntityCache.hpp" />
+    <ClInclude Include="src\game\SlowCache.hpp" />
+    <ClInclude Include="src\game\WorldCache.hpp" />
+    <ClInclude Include="src\game\CacheManager.hpp" />
+    <ClInclude Include="src\game\Loop.hpp" />
+    <ClInclude Include="src\game\World.hpp" />
+    <ClInclude Include="ext\dgb\debug.h" />
+    <ClInclude Include="ext\dgb\lazy.hpp" />
+    <ClInclude Include="ext\dgb\Spoof.h" />
+    <ClInclude Include="ext\draws\Draws.h" />
+    <ClInclude Include="ext\draws\Textures.h" />
+    <ClInclude Include="src\memory\driver_memory.hpp" />
+    <ClInclude Include="src\memory\driver_types.hpp" />
+    <ClInclude Include="src\memory\interface\ctx.hpp" />
+    <ClInclude Include="src\debug\Logger.hpp" />
+    <ClInclude Include="src\config\build_config.hpp" />
+    <ClInclude Include="src\app\init.hpp" />
+    <ClInclude Include="src\main.hpp" />
+    <ClInclude Include="src\Cheat.hpp" />
+    <ClInclude Include="src\app\RenderDevice.hpp" />
+    <ClInclude Include="src\app\Renderer.hpp" />
+    <ClInclude Include="src\settings\Settings.hpp" />
+    <ClInclude Include="src\settings\Types.h" />
+    <ClInclude Include="src\sdk\Decryptions.hpp" />
+    <ClInclude Include="src\sdk\Steam.hpp" />
+    <ClInclude Include="src\sdk\Xbox.hpp" />
+    <ClInclude Include="src\sdk\Math.hpp" />
+    <ClInclude Include="src\sdk\Offsets.hpp" />
+    <ClInclude Include="src\sdk\SDK.hpp" />
+    <ClInclude Include="Unicorn.hpp" />
+    <ClInclude Include="ext\Font2.h" />
+    <ClInclude Include="ext\fonts.h" />
+    <ClInclude Include="ext\freetype\imgui_freetype.h" />
+    <ClInclude Include="ext\freetype\include\freetype\config\ftconfig.h" />
+    <ClInclude Include="ext\freetype\include\freetype\config\ftheader.h" />
+    <ClInclude Include="ext\freetype\include\freetype\config\ftmodule.h" />
+    <ClInclude Include="ext\freetype\include\freetype\config\ftoption.h" />
+    <ClInclude Include="ext\freetype\include\freetype\config\ftstdlib.h" />
+    <ClInclude Include="ext\freetype\include\freetype\config\integer-types.h" />
+    <ClInclude Include="ext\freetype\include\freetype\config\mac-support.h" />
+    <ClInclude Include="ext\freetype\include\freetype\config\public-macros.h" />
+    <ClInclude Include="ext\freetype\include\freetype\freetype.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftadvanc.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftbbox.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftbdf.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftbitmap.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftbzip2.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftcache.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftchapters.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftcid.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftcolor.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftdriver.h" />
+    <ClInclude Include="ext\freetype\include\freetype\fterrdef.h" />
+    <ClInclude Include="ext\freetype\include\freetype\fterrors.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftfntfmt.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftgasp.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftglyph.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftgxval.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftgzip.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftimage.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftincrem.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftlcdfil.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftlist.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftlogging.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftlzw.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftmac.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftmm.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftmodapi.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftmoderr.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftotval.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftoutln.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftparams.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftpfr.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftrender.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftsizes.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftsnames.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftstroke.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftsynth.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftsystem.h" />
+    <ClInclude Include="ext\freetype\include\freetype\fttrigon.h" />
+    <ClInclude Include="ext\freetype\include\freetype\fttypes.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ftwinfnt.h" />
+    <ClInclude Include="ext\freetype\include\freetype\otsvg.h" />
+    <ClInclude Include="ext\freetype\include\freetype\t1tables.h" />
+    <ClInclude Include="ext\freetype\include\freetype\ttnameid.h" />
+    <ClInclude Include="ext\freetype\include\freetype\tttables.h" />
+    <ClInclude Include="ext\freetype\include\freetype\tttags.h" />
+    <ClInclude Include="ext\freetype\include\ft2build.h" />
+    <ClInclude Include="ext\freetype\include\imgui_freetype.h" />
+    <ClInclude Include="ext\imgui\gui\gui.h" />
+    <ClInclude Include="ext\imgui\gui\gui_colors.h" />
+    <ClInclude Include="ext\imgui\gui\gui_font.h" />
+    <ClInclude Include="ext\imgui\gui\IconsLucide.h" />
+    <ClInclude Include="ext\imgui\gui\lucide_font_data.h" />
+    <ClInclude Include="ext\imgui\imconfig.h" />
+    <ClInclude Include="ext\imgui\imgui.h" />
+    <ClInclude Include="ext\imgui\imgui_impl_dx9.h" />
+    <ClInclude Include="ext\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="ext\imgui\imgui_internal.h" />
+    <ClInclude Include="ext\imgui\imstb_rectpack.h" />
+    <ClInclude Include="ext\imgui\imstb_textedit.h" />
+    <ClInclude Include="ext\imgui\imstb_truetype.h" />
+    <ClInclude Include="ext\Platform.h" />
+    <ClInclude Include="ext\stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ext\freetype\win64\freetype.lib" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

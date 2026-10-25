@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de origen">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Archivos de encabezado">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Archivos de recursos">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Archivos de origen\custom">
+      <UniqueIdentifier>{BF951F1D-4985-4827-839D-A80740D58C20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\freetype">
+      <UniqueIdentifier>{385F22C6-EC78-45EE-9C8B-7F96F172AC38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\GUI">
+      <UniqueIdentifier>{73608156-CD2A-45DE-9D38-98B10721A95D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\ImGui">
+      <UniqueIdentifier>{D1615BAC-C5DB-43D8-BD52-5D6628EDCC2D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Root">
+      <UniqueIdentifier>{1A62F653-1F6F-40FB-86A4-0D8A3C8E791E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\GUI\tabs">
+      <UniqueIdentifier>{73A9D4C2-275F-4997-8067-AF5DF9D143CD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\__ext">
+      <UniqueIdentifier>{F01ACF95-9CA5-4D40-99B8-9E95FBA86025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Config">
+      <UniqueIdentifier>{B7F0DC45-8651-44F9-B736-AA74E2AA96DF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Core">
+      <UniqueIdentifier>{79EF0B54-155C-4E83-A4C2-018845F8B1EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\custom">
+      <UniqueIdentifier>{5C6F7489-6D8E-47D7-8334-189F5FB91741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\DGB">
+      <UniqueIdentifier>{05158206-083F-4541-B42C-B9909571F356}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Draws">
+      <UniqueIdentifier>{4A1C0BAC-AC0E-411D-9344-06D82EF06E7C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Driver">
+      <UniqueIdentifier>{EC51A717-A2F7-449D-8991-BAAB71556038}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\freetype">
+      <UniqueIdentifier>{AF2AD064-1C92-4CAC-A596-8B2EB82F607E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\GUI">
+      <UniqueIdentifier>{C3E9A2FD-A299-445E-BDCD-6E6123031ED8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\ImGui">
+      <UniqueIdentifier>{BBD36636-42B2-4A56-9088-510C99E46359}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Root">
+      <UniqueIdentifier>{D2A098B7-1CCA-4509-8356-80A7DF6E5B11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\SDK">
+      <UniqueIdentifier>{2EA82862-0B6F-42B2-A473-07BE3038C8E6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Driver\interface">
+      <UniqueIdentifier>{D40A4482-E5FC-4604-8E88-F4E298608CAD}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\memory\driver_memory.cpp">
+      <Filter>Archivos de origen\Root</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\OffsetHealth.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\HudRender.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\AlertManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Archivos de origen\Root</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\freetype\imgui_freetype.cpp">
+      <Filter>Archivos de origen\freetype</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\imgui\gui\gui.cpp">
+      <Filter>Archivos de origen\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\imgui\gui\lucide_font_data.cpp">
+      <Filter>Archivos de origen\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\imgui\imgui.cpp">
+      <Filter>Archivos de origen\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\imgui\imgui_draw.cpp">
+      <Filter>Archivos de origen\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\imgui\imgui_impl_dx9.cpp">
+      <Filter>Archivos de origen\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\imgui\imgui_impl_win32.cpp">
+      <Filter>Archivos de origen\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\imgui\imgui_tables.cpp">
+      <Filter>Archivos de origen\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\imgui\imgui_widgets.cpp">
+      <Filter>Archivos de origen\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\app\arc_ui_render.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\color.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\container\container.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\input\gamepad.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdk\GObjectsRecovery.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdk\Reflection.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\input\input.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\object\object.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\render\render.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\style\style.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\tab\subtab.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\tab\tab.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\ui\ui.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\button\button.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\checkbox\checkbox.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\color_picker\color_picker.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\confirmation_button\confirmation_button.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\dropdown\dropdown.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\keybind\keybind.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\label\label.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\listbox\listbox.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\multi_dropdown\multi_dropdown.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\popup\popup.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\seperator\seperator.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\slider\slider.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\text_input\text_input.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\window\window.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\menu.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\menu_combat_tab.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\menu_visuals_tab.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\menu_world_tab.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\menu_radar_tab.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\menu_misc_tab.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\menu_hud_tab.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\menu_warnings_tab.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\debug\Logger.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\radio\radio.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu\framework\widgets\grid\grid.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\app\AppWindow.hpp">
+      <Filter>Archivos de encabezado\Root</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Cache.hpp">
+      <Filter>Archivos de encabezado\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\CacheTypes.hpp">
+      <Filter>Archivos de encabezado\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\StringHash.hpp">
+      <Filter>Archivos de encabezado\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\EntityCache.hpp">
+      <Filter>Archivos de encabezado\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\SlowCache.hpp">
+      <Filter>Archivos de encabezado\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\WorldCache.hpp">
+      <Filter>Archivos de encabezado\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\CacheManager.hpp">
+      <Filter>Archivos de encabezado\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Loop.hpp">
+      <Filter>Archivos de encabezado\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\World.hpp">
+      <Filter>Archivos de encabezado\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\dgb\debug.h">
+      <Filter>Archivos de encabezado\DGB</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\dgb\lazy.hpp">
+      <Filter>Archivos de encabezado\DGB</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\dgb\Spoof.h">
+      <Filter>Archivos de encabezado\DGB</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\draws\Draws.h">
+      <Filter>Archivos de encabezado\Draws</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\draws\Textures.h">
+      <Filter>Archivos de encabezado\Draws</Filter>
+    </ClInclude>
+    <ClInclude Include="src\memory\driver_memory.hpp">
+      <Filter>Archivos de encabezado\Driver\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\memory\driver_types.hpp">
+      <Filter>Archivos de encabezado\Driver\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\memory\interface\ctx.hpp">
+      <Filter>Archivos de encabezado\Driver\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\app\init.hpp">
+      <Filter>Archivos de encabezado\Root</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main.hpp">
+      <Filter>Archivos de encabezado\Root</Filter>
+    </ClInclude>
+    <ClInclude Include="src\app\RenderDevice.hpp">
+      <Filter>Archivos de encabezado\Root</Filter>
+    </ClInclude>
+    <ClInclude Include="src\app\Renderer.hpp">
+      <Filter>Archivos de encabezado\Root</Filter>
+    </ClInclude>
+    <ClInclude Include="src\config\build_config.hpp">
+      <Filter>Archivos de encabezado\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="src\settings\Settings.hpp">
+      <Filter>Archivos de encabezado\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="src\settings\Types.h">
+      <Filter>Archivos de encabezado\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\Decryptions.hpp">
+      <Filter>Archivos de encabezado\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\Steam.hpp">
+      <Filter>Archivos de encabezado\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\Xbox.hpp">
+      <Filter>Archivos de encabezado\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\Math.hpp">
+      <Filter>Archivos de encabezado\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\Offsets.hpp">
+      <Filter>Archivos de encabezado\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\SDK.hpp">
+      <Filter>Archivos de encabezado\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Unicorn.hpp">
+      <Filter>Archivos de encabezado\Root</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\Font2.h">
+      <Filter>Archivos de encabezado\__ext</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\fonts.h">
+      <Filter>Archivos de encabezado\__ext</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\imgui_freetype.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\config\ftconfig.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\config\ftheader.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\config\ftmodule.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\config\ftoption.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\config\ftstdlib.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\config\integer-types.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\config\mac-support.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\config\public-macros.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\freetype.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftadvanc.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftbbox.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftbdf.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftbitmap.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftbzip2.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftcache.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftchapters.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftcid.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftcolor.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftdriver.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\fterrdef.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\fterrors.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftfntfmt.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftgasp.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftglyph.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftgxval.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftgzip.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftimage.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftincrem.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftlcdfil.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftlist.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftlogging.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftlzw.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftmac.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftmm.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftmodapi.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftmoderr.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftotval.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftoutln.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftparams.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftpfr.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftrender.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftsizes.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftsnames.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftstroke.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftsynth.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftsystem.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\fttrigon.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\fttypes.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ftwinfnt.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\otsvg.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\t1tables.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\ttnameid.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\tttables.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\freetype\tttags.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\ft2build.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\freetype\include\imgui_freetype.h">
+      <Filter>Archivos de encabezado\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\gui\gui.h">
+      <Filter>Archivos de encabezado\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\gui\gui_colors.h">
+      <Filter>Archivos de encabezado\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\gui\gui_font.h">
+      <Filter>Archivos de encabezado\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\gui\IconsLucide.h">
+      <Filter>Archivos de encabezado\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\gui\lucide_font_data.h">
+      <Filter>Archivos de encabezado\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\imconfig.h">
+      <Filter>Archivos de encabezado\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\imgui.h">
+      <Filter>Archivos de encabezado\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\imgui_impl_dx9.h">
+      <Filter>Archivos de encabezado\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\imgui_impl_win32.h">
+      <Filter>Archivos de encabezado\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\imgui_internal.h">
+      <Filter>Archivos de encabezado\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\imstb_rectpack.h">
+      <Filter>Archivos de encabezado\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\imstb_textedit.h">
+      <Filter>Archivos de encabezado\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\imstb_truetype.h">
+      <Filter>Archivos de encabezado\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\Platform.h">
+      <Filter>Archivos de encabezado\__ext</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\stb_image.h">
+      <Filter>Archivos de encabezado\__ext</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cheat.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\debug\Logger.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ext\freetype\win64\freetype.lib">
+      <Filter>Archivos de recursos</Filter>
+    </Library>
+  </ItemGroup>
+</Project>
