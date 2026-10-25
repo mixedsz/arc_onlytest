@@ -1,0 +1,663 @@
+# CL-1341255 — 2026-08-20
+    namespace Steam
+    {
+
+
+        constexpr uintptr_t UViewPort_Uworld = 0x1A0;
+        constexpr uintptr_t UViewPort_GameInstance = 0x198;
+        constexpr uintptr_t UViewPort_ViewIndex = 0x140;
+
+
+        // CL-1341255 (2026-08-18, imgsize 0x116E7000). qwe900 Steam SDK + live-pinned actors.
+        constexpr uintptr_t UGameInstance_LocalPlayers = 0x138;   // GameInstance::LocalPlayers
+
+
+        constexpr uintptr_t UWorld_PersistentLevel = 0x110;      // World::PersistentLevel
+        constexpr uintptr_t UWorld_Levels = 0x348;               // World::Levels
+        constexpr uintptr_t UWorld_LevelCollections = 0x240;     // World::LevelCollections
+        constexpr uintptr_t UWorld_GameState = 0x0;
+        constexpr uintptr_t UWorld_OwningGameInstance = 0x478;   // World::OwningGameInstance
+
+
+        constexpr uintptr_t FLevelCollection_GameState = 0x8;
+
+
+        constexpr uintptr_t AGameState_PlayerArray = 0x3F8;      // GameStateBase::PlayerArray
+        constexpr uintptr_t AGameState_StageInfo = 0x878;        // PioneerGameState::StageInfo
+
+
+        constexpr uintptr_t StageInfo_TimeLeft = 0x18;
+        constexpr uintptr_t StageInfo_GraceTime = 0x20;
+
+
+        // ULevel::Actors is not a UPROPERTY so the dump does not name it. Live-pinned
+        // CL-1341255: Actors 0x108 / count 0x110, OwningWorld 0x130.
+        constexpr uintptr_t ULevel_ActorArray = 0x108;           // live-pinned CL-1341255
+        constexpr uintptr_t ULevel_WorldSettings = 0x310;        // +8 with the rest of ULevel
+        constexpr uintptr_t ULevel_OwningWorld = 0x130;          // Level::OwningWorld
+
+
+        constexpr uintptr_t UWorldSettings_WorldGravity = 0x420;
+
+
+        constexpr uintptr_t ULocalPlayer_PlayerController = 0xA0;
+
+
+        constexpr uintptr_t UPlayerController_AcknowledgedPawn = 0x3D8;
+        constexpr uintptr_t UPlayerController_ControlRotation = 0x438;
+        // sdk_wanted CL-1341255 APlayerController. Ack is often still 0 at spawn;
+        // PlayerState / Character / PlayerCameraManager identify the PC without it.
+        constexpr uintptr_t UPlayerController_PlayerState = 0x3C0;
+        constexpr uintptr_t UPlayerController_Character = 0x408;
+        constexpr uintptr_t UPlayerController_PlayerCameraManager = 0x4E0;
+
+
+        constexpr uintptr_t CameraManager_DefaultFOV = 0x3E8;    // PlayerCameraManager::DefaultFOV
+        constexpr uintptr_t CameraManager_LockedFov = 0x42C;
+        constexpr uintptr_t CameraManager_ViewTarget = 0xC80;    // PlayerCameraManager::ViewTarget
+
+
+        constexpr uintptr_t FTViewTarget_POV = 0x10;             // TViewTarget::POV
+
+
+        // CL-1341255: Location is +0x10 into FMinimalViewInfo (absolute PCM+0xCA0 =
+        // ViewTarget 0xC80 + POV 0x10 + Location 0x10). Rotation +0x30, FOV +0x58.
+        constexpr uintptr_t FMinimalViewInfo_Location = 0x10;
+        constexpr uintptr_t FMinimalViewInfo_Rotation = 0x30;    // MinimalViewInfo::Rotation
+        constexpr uintptr_t FMinimalViewInfo_FOV = 0x58;         // MinimalViewInfo::FOV
+
+
+        // 0x238, SDK CL-1341255 AActor::RootComponent.
+        constexpr uintptr_t UObject_RootComponent = 0x238;
+        constexpr uintptr_t UObject_Owner = 0x1C8;               // AActor::Owner
+
+
+        constexpr uintptr_t UObject_UIHoverData = 0x0;
+
+
+        constexpr uintptr_t UObject_InteractionComponent = 0xB58;
+
+
+        constexpr uintptr_t UObject_IsDestroyed = 0x1210;
+
+
+        // Every USceneComponent field moved by exactly +0x18 in this patch, which is what
+        // makes the derived ComponentToWorld below trustworthy despite not being dumped:
+        // RelativeLocation 0x248 -> 0x260, ComponentVelocity 0x290 -> 0x2A8, AttachChildren
+        // 0x1D0 -> 0x1E8. RelativeLocation itself is inferred from RelativeRotation 0x278.
+        constexpr uintptr_t USceneComponent_RelativeLocation = 0x260;
+        constexpr uintptr_t USceneComponent_ComponentVelocity = 0x2A8;  // SceneComponent::ComponentVelocity
+        constexpr uintptr_t USceneComponent_AttachChildren = 0x1E8;     // SceneComponent::AttachChildren
+        // 0x370, from two independent reports: one gives the rotation and translation as a
+        // pair at 0x370 and 0x390, which is self-consistent because translation sits 0x20
+        // into an FTransform, behind the four-double quaternion. The previous 0x208 came from
+        // a CTW_Translation report of 0x228 and it read a plausible position, which is
+        // exactly why it went unnoticed - GetSceneComponentWorldLocation returned early and
+        // the pawn appeared in the right place. Only the skeleton exposed it: reading the
+        // transform 0x168 bytes early takes the scale from unrelated memory, and every bone
+        // is multiplied by it, so the pose came out roughly 100x too large and every player
+        // was rejected on coherence before a skeleton could ever be drawn.
+        constexpr uintptr_t USceneComponent_ComponentToWorld = 0x370;
+
+
+        constexpr uintptr_t UPawn_PlayerState = 0x3D0;
+        constexpr uintptr_t UPawn_Controller = 0x3E8;            // APawn::Controller
+        constexpr uintptr_t UPawn_Mesh = 0x438;
+
+
+        constexpr uintptr_t UPawn_HealthComponent = 0xDD8;
+        constexpr uintptr_t UPawn_InventoryComponent = 0xCB0;
+        constexpr uintptr_t UPawn_FlashlightComponent = 0xDF8;
+
+
+        constexpr uintptr_t UFlashlightComponent_FlashlightColor = 0x548;
+
+
+        constexpr uintptr_t UPlayerState_PlayerName = 0x430;
+        constexpr uintptr_t UPlayerState_PawnPrivate = 0x428;
+
+        // APlayerState::UniqueID — FUniqueNetIdRepl, dump size 48, UniqueID at 968.
+        constexpr uintptr_t UPlayerState_UniqueId = 0x3C8;
+        // Dump EmbarkPlayerStateBase::PlatformIdComponent is 0x488. Live Squad is dump+0x18
+        // (0x460 -> 0x478), so the component sits at 0x4A0 on this build.
+        constexpr uintptr_t UPlayerState_PlatformIdComponent = 0x4A0;
+        constexpr uintptr_t UEmbarkPlatformIdComponent_PlatformId = 0x168;
+
+
+        constexpr uintptr_t UPlayerState_Squad = 0x478;
+
+        // Offset into EmbarkSquad, not PlayerState. Dump Title is FText at 0x398.
+        constexpr uintptr_t UPlayerState_SquadName = 0x398;
+
+        // FPlayerHealthInfo does not exist. The Dumper-7 dump of this build contains no
+        // struct by that name anywhere in 750,000 lines, and 0x540 lands inside
+        // PioneerPlayerState::RespawnInfo (0x538). That is the whole explanation for
+        // [HiScan] reporting hiOff=0x0 on all 699 attempts - it was hunting for something
+        // the game does not have. Health comes from the health component instead; these
+        // stay only so the probe in SlowCache.hpp keeps compiling while it is retired.
+        constexpr uintptr_t UPlayerState_HealthInfo = 0x550;
+        constexpr uintptr_t FPlayerHealthInfo_Health = 0x00;
+        constexpr uintptr_t FPlayerHealthInfo_MaxHealth = 0x08;
+        constexpr uintptr_t FPlayerHealthInfo_Armor = 0x10;
+        constexpr uintptr_t FPlayerHealthInfo_MaxArmor = 0x18;
+        constexpr uintptr_t FPlayerHealthInfo_bIsDbno = 0x21;
+
+        // PioneerPlayerState::PlayerStatus - a uint8_t with OnRep_PlayerStatus, confirmed in
+        // the dump at exactly the offset [DbnoScan] found empirically by diffing 1536 bytes
+        // across a healthy-to-downed transition. It is a status enum rather than a bool, so
+        // the validation in SlowCache.hpp treats any non-zero value as downed instead of
+        // rejecting values above 1.
+        constexpr uintptr_t UPlayerState_IsDbno = 0x530;
+        // PioneerPlayerState::bFinishedRound / CurrentPawn — dump PlayerState, CL-1341255.
+        // Extracted PlayerArray entries keep a frozen pawn; this flag is what drops them.
+        constexpr uintptr_t UPlayerState_FinishedRound = 0x598;
+        constexpr uintptr_t UPlayerState_CurrentPawn = 0x550;
+
+
+        // HealthComponent::CachedHealth. Armor is a nested ArmorSlot at +0x140, whose
+        // Health is at +0x0 and CurrentMaxArmor at +0x10, giving the absolute values below.
+        // HealthComponent has no MaxHealth UPROPERTY at all - it lives on the GAS attribute
+        // set - so the existing probe list in SlowCache.hpp still carries the search.
+        constexpr uintptr_t UHealthComponent_CurrentArmor = 0x150; // ArmorSlot::Health
+        constexpr uintptr_t UHealthComponent_MaxArmor = 0x158;     // ArmorSlot::CurrentMaxArmor
+        constexpr uintptr_t UHealthComponent_CurrentHealth = 0x678; // CachedHealth, double
+        constexpr uintptr_t UHealthComponent_MaxHealth = 0x308;     // double, plaintext
+
+
+        // 0x4A0, from working code posted for this build; the previous 0x4B0 read past the
+        // array and every held item came back empty. LocalCurrentItems is the fallback that
+        // same source falls through to when the primary array is empty.
+        constexpr uintptr_t UInventoryComponent_CurrentItemActors = 0x4B0;
+        constexpr uintptr_t UInventoryComponent_LocalCurrentItems = 0x4D0;
+        // sdk_wanted InventoryComponent. Used when both item-actor TArrays are empty
+        // (InvDiag src=local itemsCount=0 on armed pawns).
+        constexpr uintptr_t UInventoryComponent_EquippedPrimaryItem = 0x500;
+        constexpr uintptr_t UInventoryComponent_StowedWeapon0 = 0x330;
+        constexpr uintptr_t UInventoryComponent_StowedToolActor = 0x3B0;
+        constexpr uintptr_t UInventoryComponent_StowedActorInLayout = 0x10;
+        constexpr uintptr_t UInventoryComponent_StowedItemDataAsset = 0x18;
+
+
+        constexpr uintptr_t UItemBase_ProjectileOverride = 0x5E8;
+
+
+        // Dump WeaponActor CL-1341255: ClipSize 0x470, WeaponQuality 0x472,
+        // VisualizedWeaponMods 0x488. The old 0x4A0/0x4A2 pair sat past mods, so
+        // ReadItemActorWeaponBatch underflowed the span and never returned quality.
+        constexpr uintptr_t UItemActor_WeaponQuality = 0x472;
+        constexpr uintptr_t UItemActor_VisualizedMods = 0x488;
+        constexpr uintptr_t UItemActor_WeaponClip = 0x470;   // uint16 ClipSize
+
+        // Dump EmbarkSquad: Title FText 0x398, Seed int32 0x3C8.
+        constexpr uintptr_t UEmbarkSquad_Title = 0x398;
+        constexpr uintptr_t UEmbarkSquad_Seed = 0x3C8;
+
+
+        constexpr uintptr_t UProjectileMovement_InitialSpeed = 0x1B8;
+        constexpr uintptr_t UProjectileMovement_MaxSpeed = 0x1BC;
+        constexpr uintptr_t UProjectileMovement_ProjectileGravity = 0x1E8;
+
+
+        constexpr uintptr_t AProjectile_ProjectileMovement = 0xB38;
+
+
+        constexpr uintptr_t UInteractionComponent_IsOpened = 0x8D8;
+
+
+        constexpr uintptr_t UIHoverData_LootAmount = 0x18;
+        constexpr uintptr_t UIHoverData_DataAsset = 0x20;
+
+
+        constexpr uintptr_t UItemDataAsset_ItemCategory = 0x2A8;
+        constexpr uintptr_t UItemDataAsset_Weight = 0x298;
+
+
+        constexpr uintptr_t USkeletalMeshComponent_BoundsScale = 0x4B8;
+        constexpr uintptr_t USkeletalMeshComponent_AnimScriptInstance = 0xAD8;
+
+
+        constexpr uintptr_t UAnimInstance_CrossLayerAnimationPropertiesRef = 0x3B90;
+
+
+        constexpr uintptr_t UCrossLayerAnimationProperties_EquippedWeaponAmmoCount = 0x674;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bIsZooming = 0x678;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bIsSprinting = 0x141;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bIsDodgeRolling = 0x142;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bIsInJump = 0x14A;
+        constexpr uintptr_t UCrossLayerAnimationProperties_CharacterStance = 0x610;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bIsReloading = 0x671;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bIsFiring = 0x66A;
+        // CrossLayerAnimationProperties dump (CL-1341255). bIsFiring / bIsReloading
+        // stay set through fire-end / reload recovery, so activity tags use these
+        // alongside the bools. ELocoMode at 0x170: Still=0 Walk=1 Run=2 Sprint=3.
+        // ELoopingReloadState at 0x672: NotActive=0 Entry=1 Loop=2 Exit=3.
+        constexpr uintptr_t UCrossLayerAnimationProperties_LocoMode = 0x170;
+        constexpr uintptr_t UCrossLayerAnimationProperties_LoopingReloadState = 0x672;
+        constexpr uintptr_t UCrossLayerAnimationProperties_FireWeaponCount = 0x66C;
+        constexpr uintptr_t UCrossLayerAnimationProperties_FireState = 0x6C0;
+        constexpr uintptr_t UCrossLayerAnimationProperties_TimeSinceFire = 0x6F0;
+        constexpr uintptr_t UCrossLayerAnimationProperties_GameTimeSeconds = 0xF0;
+        constexpr uintptr_t UCrossLayerAnimationProperties_StartReloadTimeStamp = 0x780;
+        constexpr uintptr_t UCrossLayerAnimationProperties_WeaponReloadTime = 0x788;
+        constexpr uintptr_t UCrossLayerAnimationProperties_TimeSpentReloadingScaled = 0xAB8;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bIsTryingToSprint = 0x458;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bInSprintState = 0x23A4;
+        constexpr uintptr_t UCrossLayerAnimationProperties_CurrentReloadActionIndex = 0x7A4;
+
+
+        constexpr uintptr_t ASalvageExtractionPointBase_bCanExtract = 0xB38;
+        constexpr uintptr_t ASalvageExtractionPointBase_ExtractionDataAsset = 0xB40;
+        constexpr uintptr_t ASalvageExtractionPointBase_State = 0xC0A;
+        constexpr uintptr_t ASalvageExtractionPointBase_bIsEnabled = 0xC08;
+
+
+        constexpr uintptr_t ASalvageExtractionPointBase_TimeLeftAfterShutdown = 0xC28;
+
+
+        constexpr uintptr_t UExtractionDataAsset_DialogueTag = 0xD8;
+
+
+        constexpr uintptr_t FGameplayTag_TagName = 0x0;
+
+
+        constexpr uintptr_t UStaticMeshActor_StaticMeshComponent = 0x398;
+
+
+        constexpr uintptr_t UStaticMeshComponent_StaticMesh = 0x718;
+
+
+        constexpr uintptr_t UStaticMesh_BodySetup = 0x1E8;
+        constexpr uintptr_t UStaticMesh_ExtendedBounds = 0x300;
+
+
+        constexpr uintptr_t UBodySetup_AggGeom = 0xB0;
+
+
+        constexpr uintptr_t CameraManager_PCOwner = 0x3D0;  // PlayerCameraManager::PCOwner
+
+
+        constexpr uintptr_t UPlayerController_bIsLocalPlayerController = 0xD14;
+
+
+
+        constexpr uintptr_t Arc_HealthService = 0x1288;
+        constexpr uintptr_t Arc_HealthService_DamageDataStore = 0x148;
+        constexpr uintptr_t Arc_DDS_ArrayData = 0xA8;
+        constexpr uintptr_t Arc_DDS_ArrayNum = 0xB0;
+        constexpr uintptr_t Arc_DDS_ElementStride = 0x70;
+        constexpr uintptr_t Arc_DDS_Element_CurrentHealthUNorm = 0x34;
+        constexpr uintptr_t Arc_ActorHealthComponent = 0x5E0;
+        constexpr uintptr_t Arc_ActorHealthComponent_MaxHealth = 0x168;
+        constexpr uintptr_t Arc_HealthGroupService = 0x12B0;
+        constexpr uintptr_t Arc_HGS_BaseGroup = 0x168;
+        constexpr uintptr_t Arc_BaseGroup_PartIDs_SlotsNum = 0x0;
+        constexpr uintptr_t Arc_BaseGroup_PartIDs_NumFreeSlots = 0x4;
+        constexpr uintptr_t Arc_BaseGroup_NumOfDestroyedParts = 0x8;
+
+
+
+    }
+
+    namespace Xbox
+    {
+
+
+        constexpr uintptr_t UViewPort_Uworld = 0x190;
+        constexpr uintptr_t UViewPort_GameInstance = 0x1E0;
+        constexpr uintptr_t UViewPort_ViewIndex = 0x210;
+
+
+        constexpr uintptr_t UGameInstance_LocalPlayers = 0xA0;
+
+
+        constexpr uintptr_t UWorld_PersistentLevel = 0x80;
+        constexpr uintptr_t UWorld_Levels = 0x268;
+        constexpr uintptr_t UWorld_LevelCollections = 0x2E0;
+        constexpr uintptr_t UWorld_GameState = 0x0;   // unknown on Xbox; falls back to LevelCollections
+        constexpr uintptr_t UWorld_OwningGameInstance = 0x0;   // unknown on Xbox
+
+
+        constexpr uintptr_t FLevelCollection_GameState = 0x8;
+
+
+        constexpr uintptr_t AGameState_PlayerArray = 0x3F0;
+        constexpr uintptr_t AGameState_StageInfo = 0x808;
+
+
+        constexpr uintptr_t StageInfo_TimeLeft = 0x18;
+        constexpr uintptr_t StageInfo_GraceTime = 0x20;
+
+
+        constexpr uintptr_t ULevel_OwningWorld = 0x0;   // unknown on Xbox
+        constexpr uintptr_t ULevel_ActorArray = 0xC0;
+        constexpr uintptr_t ULevel_WorldSettings = 0x2C8;
+
+
+        constexpr uintptr_t UWorldSettings_WorldGravity = 0x3D8;
+
+
+        constexpr uintptr_t ULocalPlayer_PlayerController = 0x58;
+
+
+        constexpr uintptr_t UPlayerController_AcknowledgedPawn = 0x390;
+        constexpr uintptr_t UPlayerController_ControlRotation = 0x3C8;
+
+
+        constexpr uintptr_t CameraManager_DefaultFOV = 0x3C0;
+        constexpr uintptr_t CameraManager_LockedFov = 0x3C4;
+        constexpr uintptr_t CameraManager_ViewTarget = 0x440;
+
+
+        constexpr uintptr_t FTViewTarget_POV = 0x10;
+
+
+        constexpr uintptr_t FMinimalViewInfo_Location = 0x10;
+        constexpr uintptr_t FMinimalViewInfo_Rotation = 0x38;
+        constexpr uintptr_t FMinimalViewInfo_FOV = 0x60;
+
+
+        constexpr uintptr_t UObject_RootComponent = 0x1D8;
+
+
+        constexpr uintptr_t UObject_UIHoverData = 0x0;
+
+
+        constexpr uintptr_t UObject_InteractionComponent = 0xB58;
+
+
+        constexpr uintptr_t UObject_IsDestroyed = 0x11C0;
+
+
+        constexpr uintptr_t USceneComponent_RelativeLocation = 0x1F8;
+        constexpr uintptr_t USceneComponent_ComponentVelocity = 0x240;
+        constexpr uintptr_t USceneComponent_AttachChildren = 0x180;
+        constexpr uintptr_t USceneComponent_ComponentToWorld = 0x310;
+
+
+        constexpr uintptr_t UPawn_PlayerState = 0x370;
+        constexpr uintptr_t UPawn_Mesh = 0x3D8;
+
+
+        constexpr uintptr_t UPawn_HealthComponent = 0xD78;
+        constexpr uintptr_t UPawn_InventoryComponent = 0xC50;
+        constexpr uintptr_t UPawn_FlashlightComponent = 0xD98;
+
+
+        constexpr uintptr_t UFlashlightComponent_FlashlightColor = 0x4F8;
+
+
+        constexpr uintptr_t UPlayerState_PlayerName = 0x3E8;
+        constexpr uintptr_t UPlayerState_PawnPrivate = 0x3C8;
+
+        // Steam UniqueID/PlatformIdComponent minus the 0x48 PlayerState delta.
+        constexpr uintptr_t UPlayerState_UniqueId = 0x380;
+        constexpr uintptr_t UPlayerState_PlatformIdComponent = 0x458;
+        constexpr uintptr_t UEmbarkPlatformIdComponent_PlatformId = 0x168;
+
+
+        constexpr uintptr_t UPlayerState_Squad = 0x418;
+
+
+        constexpr uintptr_t UPlayerState_SquadName = 0x350;
+
+        constexpr uintptr_t UPlayerState_HealthInfo = 0x4F8;
+        constexpr uintptr_t FPlayerHealthInfo_Health = 0x00;
+        constexpr uintptr_t FPlayerHealthInfo_MaxHealth = 0x08;
+        constexpr uintptr_t FPlayerHealthInfo_Armor = 0x10;
+        constexpr uintptr_t FPlayerHealthInfo_MaxArmor = 0x18;
+        constexpr uintptr_t FPlayerHealthInfo_bIsDbno = 0x21;
+
+        // Inferred, not observed. Every PlayerState field here sits exactly 0x48 below its
+        // Steam counterpart (PlayerName 0x3E8/0x430, HealthInfo 0x4F8/0x540), so the Steam
+        // 0x510 maps to 0x4C8. The runtime validation in SlowCache.hpp will simply refuse
+        // to trust it if that assumption does not hold on Xbox.
+        constexpr uintptr_t UPlayerState_IsDbno = 0x4C8;
+        constexpr uintptr_t UPlayerState_FinishedRound = 0x0;
+        constexpr uintptr_t UPlayerState_CurrentPawn = 0x0;
+
+
+        constexpr uintptr_t UHealthComponent_CurrentArmor = 0x150;
+        constexpr uintptr_t UHealthComponent_MaxArmor = 0x158;
+        constexpr uintptr_t UHealthComponent_CurrentHealth = 0x668;
+        constexpr uintptr_t UHealthComponent_MaxHealth = 0x308;
+
+
+        // Xbox is not touched by the Steam patch. LocalCurrentItems and WeaponClip have no
+        // reported Xbox values, so they stay zero and their call sites skip them.
+        constexpr uintptr_t UInventoryComponent_CurrentItemActors = 0x4B0;
+        constexpr uintptr_t UInventoryComponent_LocalCurrentItems = 0x0;
+        constexpr uintptr_t UInventoryComponent_EquippedPrimaryItem = 0x0;
+        constexpr uintptr_t UInventoryComponent_StowedWeapon0 = 0x0;
+        constexpr uintptr_t UInventoryComponent_StowedToolActor = 0x0;
+        constexpr uintptr_t UInventoryComponent_StowedActorInLayout = 0x0;
+        constexpr uintptr_t UInventoryComponent_StowedItemDataAsset = 0x0;
+
+
+        constexpr uintptr_t UItemBase_ProjectileOverride = 0x5A8;
+
+
+        constexpr uintptr_t UItemActor_WeaponQuality = 0x422;
+        constexpr uintptr_t UItemActor_VisualizedMods = 0x438;
+        constexpr uintptr_t UItemActor_WeaponClip = 0x0;
+
+
+        constexpr uintptr_t UProjectileMovement_InitialSpeed = 0x1B8;
+        constexpr uintptr_t UProjectileMovement_MaxSpeed = 0x1BC;
+        constexpr uintptr_t UProjectileMovement_ProjectileGravity = 0x1E8;
+
+
+        constexpr uintptr_t AProjectile_ProjectileMovement = 0xB38;
+
+
+        constexpr uintptr_t UInteractionComponent_IsOpened = 0x850;
+
+
+        constexpr uintptr_t UIHoverData_LootAmount = 0x18;
+        constexpr uintptr_t UIHoverData_DataAsset = 0x20;
+
+
+        constexpr uintptr_t UItemDataAsset_ItemCategory = 0x268;
+        constexpr uintptr_t UItemDataAsset_Weight = 0x258;
+
+
+        constexpr uintptr_t USkeletalMeshComponent_BoundsScale = 0x458;
+        constexpr uintptr_t USkeletalMeshComponent_AnimScriptInstance = 0xA68;
+
+
+        constexpr uintptr_t UAnimInstance_CrossLayerAnimationPropertiesRef = 0x3B50;
+
+
+        constexpr uintptr_t UCrossLayerAnimationProperties_EquippedWeaponAmmoCount = 0x634;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bIsZooming = 0x638;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bIsSprinting = 0x101;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bIsDodgeRolling = 0x102;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bIsInJump = 0x10A;
+        constexpr uintptr_t UCrossLayerAnimationProperties_CharacterStance = 0x5D0;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bIsReloading = 0x631;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bIsFiring = 0x62A;
+        constexpr uintptr_t UCrossLayerAnimationProperties_LocoMode = 0x130;
+        constexpr uintptr_t UCrossLayerAnimationProperties_LoopingReloadState = 0x632;
+        constexpr uintptr_t UCrossLayerAnimationProperties_FireWeaponCount = 0x62C;
+        constexpr uintptr_t UCrossLayerAnimationProperties_FireState = 0x680;
+        constexpr uintptr_t UCrossLayerAnimationProperties_TimeSinceFire = 0x6B0;
+        constexpr uintptr_t UCrossLayerAnimationProperties_GameTimeSeconds = 0xB0;
+        constexpr uintptr_t UCrossLayerAnimationProperties_StartReloadTimeStamp = 0x740;
+        constexpr uintptr_t UCrossLayerAnimationProperties_WeaponReloadTime = 0x748;
+        constexpr uintptr_t UCrossLayerAnimationProperties_TimeSpentReloadingScaled = 0xA78;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bIsTryingToSprint = 0x418;
+        constexpr uintptr_t UCrossLayerAnimationProperties_bInSprintState = 0x2364;
+        constexpr uintptr_t UCrossLayerAnimationProperties_CurrentReloadActionIndex = 0x764;
+
+
+        constexpr uintptr_t ASalvageExtractionPointBase_bCanExtract = 0xB38;
+        constexpr uintptr_t ASalvageExtractionPointBase_ExtractionDataAsset = 0xB40;
+        constexpr uintptr_t ASalvageExtractionPointBase_State = 0xBCA;
+        constexpr uintptr_t ASalvageExtractionPointBase_bIsEnabled = 0xBC8;
+
+
+        constexpr uintptr_t ASalvageExtractionPointBase_TimeLeftAfterShutdown = 0xC28;
+
+
+        constexpr uintptr_t UExtractionDataAsset_DialogueTag = 0x98;
+
+
+        constexpr uintptr_t FGameplayTag_TagName = 0x0;
+
+
+        constexpr uintptr_t UStaticMeshActor_StaticMeshComponent = 0x350;
+
+
+        constexpr uintptr_t UStaticMeshComponent_StaticMesh = 0x6B8;
+
+
+        constexpr uintptr_t UBodySetup_AggGeom = 0x70;
+
+
+        constexpr uintptr_t UStaticMesh_BodySetup = 0x1A8;
+        constexpr uintptr_t UStaticMesh_ExtendedBounds = 0x2C0;
+
+
+        constexpr uintptr_t CameraManager_PCOwner = 0x3A8;  // Xbox - not touched by the Steam patch
+
+
+        constexpr uintptr_t UPlayerController_bIsLocalPlayerController = 0xC5C;
+
+
+
+        constexpr uintptr_t Arc_HealthService = 0x1238;
+        constexpr uintptr_t Arc_HealthService_DamageDataStore = 0x160;
+        constexpr uintptr_t Arc_DDS_ArrayData = 0x68;
+        constexpr uintptr_t Arc_DDS_ArrayNum = 0x70;
+        constexpr uintptr_t Arc_DDS_ElementStride = 0x70;
+        constexpr uintptr_t Arc_DDS_Element_CurrentHealthUNorm = 0x34;
+        constexpr uintptr_t Arc_ActorHealthComponent = 0x590;
+        constexpr uintptr_t Arc_ActorHealthComponent_MaxHealth = 0x0188;
+        constexpr uintptr_t Arc_HealthGroupService = 0x1260;
+        constexpr uintptr_t Arc_HGS_BaseGroup = 0x188;
+        constexpr uintptr_t Arc_BaseGroup_PartIDs_SlotsNum = 0x0;
+        constexpr uintptr_t Arc_BaseGroup_PartIDs_NumFreeSlots = 0x4;
+        constexpr uintptr_t Arc_BaseGroup_NumOfDestroyedParts = 0x8;
+
+    }
+
+# ============================================================
+# Correction (not a dump ingestion) - 2026-08-21
+# Steam: CameraManager_LockedFov  0x42C -> 0x3EC
+#
+# Source: live diagnostic, not a dump. 0x42C accepted writes and held them
+# with no visible effect; 0x3EC reads back 0.00, which is what an unlocked
+# LockedFov holds, and it matches the Xbox pattern of DefaultFOV+4
+# (Xbox: DefaultFOV 0x3C0 / LockedFov 0x3C4, Steam: 0x3E8 / 0x3EC).
+#
+# Xbox table unchanged and NOT stale - its LockedFov was already correct.
+#
+# Note for the next dump: writing LockedFov alone does nothing. The engine
+# only copies it into the POV when the unreflected bLockedFOV bit is set.
+# That bit lives in the bool bitfield word shared with
+# bDefaultConstrainAspectRatio / bClientSimulatingViewTarget /
+# bUseClientSideCameraUpdates / bGameCameraCutThisFrame. If a dump can give
+# its byte and bit, the runtime probe in Loop.hpp can be retired.
+# ============================================================
+
+# ============================================================
+# Correction (not a dump ingestion) - 2026-08-21
+# Steam: UInventoryComponent_StowedItemDataAsset  0x18 -> 0x08
+#
+# Source: _dump/StructsInfo.json.gz, InventoryStowedWeaponActor (size 0x40):
+#   Item              0x00  ItemBase*
+#   ItemDataAsset     0x08  ItemDataAsset*      <- correct target
+#   StowedWeaponActor 0x10  StowedWeaponActor*  (table StowedActorInLayout, OK)
+#   WeaponVisual      0x18  WeaponVisualsDataAsset*  <- what 0x18 was reading
+#   QualityVisual     0x20
+#   WeaponVisualMods  0x28  TArray
+#   WeaponQuality     0x38  int32               (table StowedWeaponQuality, OK)
+#
+# Two of the three sub-offsets already agreed with the dump, which is what
+# confirms this struct's layout still matches the live build - only the data
+# asset pointer was one field slot late.
+#
+# Symptom it explains: 205 of 646 InvDiag samples returned pretty="" while the
+# quality beside them read fine (135 of the 205 had a valid stowed quality).
+# The name fallback was dereferencing a visuals asset, so the display block was
+# skipped and both the weapon name and its level were lost.
+#
+# Xbox holds this at 0x0 and is inert (StowedWeapon0 is also 0 there). Not
+# stale - never populated. Sub-offsets are struct-internal, so the Steam values
+# should transfer if Xbox's StowedWeapon0 base is ever filled in.
+# ============================================================
+
+# ============================================================
+# Correction (not a dump ingestion) - 2026-08-21
+# Steam: slot index is (base + adj) & 3, NOT base ^ adj
+# Steam: class/outer slots now decode WITHOUT the trailing ROL64(32)
+#
+# SUPERSEDED IN PART, SAME DAY: this entry first recorded OUTER_ADJ 1 -> 3.
+# That was wrong. See the amendment at the end of this block - the constant
+# stays at 1 and it is the operation that changes.
+#
+# Source: live read-only slot probe (Reflection::ProbeObjectSlots), three
+# object types in one raid. All four slots decoded per object, then graded
+# against name resolution, which already worked and so served as ground truth.
+#
+#   object               base  ^0 class            ^2 name (CI)          ^3 outer                 ^1
+#   PlayerCameraManager    1   PlayerCameraManager  PlayerCameraManager   PersistentLevel          empty
+#   LocalPawn              3   BP_PioneerCharacter_C BP_PioneerCharacter_C PersistentLevel         empty
+#   UWorld                 3   World                BuriedCity_01_P       /Game/.../BuriedCity_01_P empty
+#
+# Two findings:
+#
+# 1. The outer slot was landing on the one slot of the four that is always
+#    empty - sixteen zero bytes in every object probed. See the amendment
+#    below for the correct rule; the first reading of this was wrong.
+#
+# 2. The trailing ROL64(32) in the PCLMUL slot decrypt is presentation, not
+#    decryption. It moves the FName comparison index into the low half so name
+#    slots can take it with a truncating cast. Pointer slots must use the
+#    pre-rotation value. Applying the swap to a pointer is what turned a
+#    perfectly good 0x91B8AF00 into 0x91B8AF0000000000 - the value that made
+#    ClassPrivate look broken for the whole v818 cycle.
+#
+# _dump/fname_post.txt says "full u64 = pointer for class/outer slot" against
+# the rotated value, which is wrong for this build - its own GetClassPtr bounds
+# check would have rejected its own output. Its constants are all correct
+# though, including OUTER_ADJ = 1; only the XOR it describes is wrong, and
+# every other value it documents (hash constants, slot base/stride, both CLMUL
+# polynomials, NAME_XOR = 2, CLASS_ADJ = 0) is confirmed.
+#
+# Propagated: GetClassName in Decryptions.hpp was casting ClassPrivate's return
+# to an FName comparison index. It is a UClass*, so the name needs a second
+# lookup on the pointer. That path had never worked.
+#
+# Xbox NOT stale and NOT affected: different pipeline entirely (slot base 0x10
+# stride 0x10, two module XOR keys plus PSHUFLW, no CLMUL, no final rotate).
+# FLAG for whenever an Xbox capture exists: Xbox ClassPrivate and OuterPrivate
+# both call UObjectDecryptSlot_Xbox with the same unadjusted slot index, so
+# they return the same value. Steam needs three distinct indices, so one of the
+# two Xbox paths is likely wrong - but there is no live Xbox capture to grade a
+# fix against, so nothing was changed.
+#
+# ---- Amendment, same day, second probe run ----
+#
+# The slot index is (base + adj) & 3. It is not an XOR, and OUTER_ADJ stays at
+# the dump's value of 1.
+#
+# The first run covered bases 1 and 3 only, and base^3 == (base+1)&3 for both
+# of those, so "XOR 3" fit the data and was recorded. A second run caught
+# UWorld at base 0, where the two rules diverge - XOR 3 predicts slot 3, which
+# is empty, while ADD 1 predicts slot 1, which holds the map package. Six
+# observations across bases 0, 1 and 3 now fit ADD and only ADD.
+#
+#   base  class(+0)  name(+2)  outer(+1)  empty(+3)
+#     0       0          2         1          3
+#     1       1          3         2          0
+#     3       3          1         0          2
+#
+# Class and name were never affected: adding 0 or 2 to a 2-bit value gives the
+# same result as XOR-ing it, so those two constants read identically under
+# either rule. Outer is the only one that can distinguish them, and only when
+# base is 0 or 2 - which is why one raid's worth of samples was not enough.
+#
+# Selection now goes through UObjectSlotFor_Steam so all three call sites share
+# one rule. Lesson for the next probe: sample until every base value 0-3 has
+# been seen before believing a slot rule.
+# ============================================================
